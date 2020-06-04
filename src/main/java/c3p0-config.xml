@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<c3p0-config>
+	<!-- 默认配置，如果没有指定则使用这个配置 -->
+	<default-config>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://211.159.186.47:3306/network</property>
+		<property name="user">root</property>
+		<property name="password">jlw123456</property>
+		
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">5</property>
+		<property name="maxPoolSize">20</property> <!-- intergalactoApp adopts a different approach to configuring statement 
+			caching -->
+		<property name="maxStatements">0</property>
+		<property name="maxStatementsPerConnection">5</property> <!-- he's important, but there's only one of him -->
+	</default-config>
+
+	<!-- 命名的配置,可以通过方法调用实现 -->
+	<named-config name="mysql">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://211.159.186.47:3306/network</property>
+		<property name="user">root</property>
+		<property name="password">jlw123456</property>
+		
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">5</property>
+		<property name="maxPoolSize">20</property> <!-- intergalactoApp adopts a different approach to configuring statement 
+			caching -->
+		<property name="maxStatements">0</property>
+		<property name="maxStatementsPerConnection">5</property> <!-- he's important, but there's only one of him -->
+	</named-config>
+</c3p0-config>

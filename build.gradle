@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+//    id 'com.github.johnrengelman.shadow' version '1.2.3'
+}
+
+group 'network'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+//    mavenCentral()
+}
+
+
+jar {
+    //详细信息参考 https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html
+    archivesBaseName = 'myTomcat'//基本的文件名
+    archiveVersion = '0.0.3' //版本
+    manifest { //配置jar文件的manifest
+        attributes(
+                "Manifest-Version": 1.0,
+                'Main-Class': 'Server' //指定main方法所在的文件
+        )
+    }
+    //打包依赖包
+    from {
+        (configurations.runtimeClasspath).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api
+    compile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    compile group: 'dom4j',name: 'dom4j',version: '1.6.1'
+
+
+    compile group: 'commons-dbutils', name: 'commons-dbutils', version: '1.6'
+    compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
+
+// https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
+
+}
+apply plugin: 'java'
